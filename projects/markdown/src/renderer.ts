@@ -97,6 +97,10 @@ ${body}</tbody>
     return '<strong>' + text + '</strong>';
   }
 
+  memo(text: string): string {
+    return '<span style="color: orange">' + text + '</span>';
+  }
+
   em(text: string): string {
     return '<em>' + text + '</em>';
   }

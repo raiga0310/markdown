@@ -100,6 +100,7 @@ export interface RulesInlineBase {
   reflink: RegExp;
   nolink: RegExp;
   strong: RegExp;
+  memo: RegExp;
   em: RegExp;
   code: RegExp;
   br: RegExp;

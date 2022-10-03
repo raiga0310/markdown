@@ -84,6 +84,7 @@ export class InlineLexer {
       reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
       nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
       strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
+      memo: /^&&([\s\S]+?)&&(?!_)/,
       em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
       code: /^(`+)([\s\S]*?[^`])\1(?!`)/,
       br: /^ {2,}\n(?!\s*$)/,
@@ -269,6 +270,13 @@ export class InlineLexer {
       if ((execArr = this.rules.strong.exec(nextPart))) {
         nextPart = nextPart.substring(execArr[0].length);
         out += this.renderer.strong(this.output(execArr[2] || execArr[1]));
+        continue;
+      }
+
+      // memo
+      if ((execArr = this.rules.memo.exec(nextPart))) {
+        nextPart = nextPart.substring(execArr[0].length);
+        out += this.renderer.memo(this.output(execArr[2] || execArr[1]));
         continue;
       }
 
